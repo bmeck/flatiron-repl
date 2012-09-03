@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+//
+// just fire up rrepl,
+// don't even use and app
+// doesn't require flatiron
+//
+var rrepl = require('../lib/repl');
+rrepl.attach.call({}, {
+  terminal: true,
+  excludeApp: true,
+  excludeProcess: true,
+  useColors: true
+});
