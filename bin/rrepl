@@ -2,8 +2,6 @@
 var net = require('net')
 
 var sock = net.connect(process.argv[2] || 1337, process.argv[3]);
-
-process.stdin.pipe(sock);
 sock.pipe(process.stdout);
 
 sock.on('connect', function () {
@@ -23,7 +21,17 @@ process.stdin.on('end', function () {
 });
 
 process.stdin.on('data', function (b) {
-  if (b.length === 1 && b[0] === 4) {
+  if (b.length === 1 && b[0] === 3) {
     process.stdin.emit('end');
   }
+  else {
+    for(var i = 0; i < b.length; i++) {
+    console.log(b[i])
+      if (b[i] === '\r'.charCodeAt(0)) {
+        b[i] = '\n'.charCodeAt(0);
+      }
+    }
+    sock.write(b);
+  }
 });
+process.stdin.resume();
