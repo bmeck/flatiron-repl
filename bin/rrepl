@@ -26,7 +26,6 @@ process.stdin.on('data', function (b) {
   }
   else {
     for(var i = 0; i < b.length; i++) {
-    console.log(b[i])
       if (b[i] === '\r'.charCodeAt(0)) {
         b[i] = '\n'.charCodeAt(0);
       }
